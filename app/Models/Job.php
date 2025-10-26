@@ -11,6 +11,7 @@ class Job
             ['title'=>'Software Engineer', 'salary'=>'1000$'],
             ['title'=>'Graphic Designer', 'salary'=>'2000$'],
             ['title'=>'Backend Developer', 'salary'=>'5000$'],
+            ['title'=>'Frontend Developer', 'salary'=>'6000$'],
         ];
     }
 }
