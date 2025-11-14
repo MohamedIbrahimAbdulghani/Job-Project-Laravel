@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Post;
+
+class PostController extends Controller
+{
+    public function index() {
+        $post = Post::all();
+        return view('post.index', compact('post'));
+    }
+    public function create() {
+        $post = Post::create([
+            'title' => 'My Find Unique Post',
+            'body' => 'This is to test find',
+            'author' => 'Mohamed Ibrahim Abdulghani',
+            'published' => true,
+        ]);
+        return redirect('/blog');
+    }
+    public function show($id) {
+        $post = Post::findOrFail($id);
+        return view('post.show', ['post' => $post, 'pageTitle'=>$post->title]);
+    }
+}
