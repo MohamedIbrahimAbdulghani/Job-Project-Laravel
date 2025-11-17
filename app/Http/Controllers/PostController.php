@@ -13,15 +13,19 @@ class PostController extends Controller
     }
     public function create() {
         $post = Post::create([
-            'title' => 'My Find Unique Post',
-            'body' => 'This is to test find',
+            'title' => 'My Find Unique Post For Testing 4 For Test Delete ',
+            'body' => 'This is to test find for testing 4 For Test Delete ',
             'author' => 'Mohamed Ibrahim Abdulghani',
             'published' => true,
         ]);
-        return redirect('/blog');
+        return redirect('/post');
     }
     public function show($id) {
         $post = Post::findOrFail($id);
         return view('post.show', ['post' => $post, 'pageTitle'=>$post->title]);
+    }
+    public function delete($id) {
+        Post::destroy($id);
+        return back();
     }
 }
