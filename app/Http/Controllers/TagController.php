@@ -28,15 +28,19 @@ class TagController extends Controller
     }
 
     public function testManyToMany() {
-        $post1 = Post::find(1);
-        $post3 = Post::find(3);
+        ///////////////////   To Get Tags From Post Or To Get Tags By Post
+        // $post1 = Post::find(1);
+        // $post1->getTags()->attach([3,4]);
+        // return response()->json([
+        //     'post 1' => $post1->getTags()->get(),
+        // ]);
 
-        $post1->getTags()->attach([3,4]);
-        $post3->getTags()->attach([4]);
-
+        ///////////////////   To Get Post From Tag Or To Get Post By Tag
+        $tag = Tag::find(3);
+        $tag->getPosts()->attach([4]);
         return response()->json([
-            'post 1' => $post1->getTags()->get(),
-            'post 3' => $post3->getTags()->get(),
+            'tag' => $tag->title,
+            'post' => $tag->getPosts()->get()
         ]);
     }
 
