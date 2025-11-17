@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TagController;
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/about', [IndexController::class, 'about']);
@@ -24,3 +25,9 @@ Route::get('post/delete/{id}', [PostController::class, 'delete']);
 /************************************************    Routes For Comment  ********************************** */
 Route::get('comment', [CommentController::class, 'index'])->name('comment');
 Route::get('comment/create', [CommentController::class, 'create']);
+
+
+/************************************************    Routes For Tag  ********************************** */
+Route::get('tag', [TagController::class, 'index']);
+Route::get('tag/create', [TagController::class, 'create']);
+Route::get('tag/testing', [TagController::class, 'testManyToMany']);
