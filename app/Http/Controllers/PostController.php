@@ -15,12 +15,14 @@ class PostController extends Controller
         return view('post.index', compact('posts'));
     }
     public function create() {
-        Post::create([
-            'title' => 'My Find Unique Post For Testing  ',
-            'body' => 'This is to test find for testing  ',
-            'author' => 'Mohamed Ibrahim Abdulghani',
-            'published' => true,
-        ]);
+        // Post::create([
+        //     'title' => 'My Find Unique Post For Testing  ',
+        //     'body' => 'This is to test find for testing  ',
+        //     'author' => 'Mohamed Ibrahim Abdulghani',
+        //     'published' => true,
+        // ]);
+        Post::factory(100)->create(); // use it to create ( 100 post ) fake data by factory
+
         return redirect('/post');
     }
     public function show($id) {

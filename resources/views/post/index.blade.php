@@ -4,7 +4,8 @@
     <h1 class="text-3xl font-bold underline mb-3">Blog Page</h1>
 
     @foreach($posts as $post)
-        <h1 class="text-2xl"><a href="{{route('comment')}}">{{ $post->id }}: {{ $post->title }}</a></h1>
+        <h1 class="text-2xl"><a href="{{route('comment')}}">{{ $post->title }}</a></h1>
+        <h2 class="text-xl">{{ $post->author }}</h2>
         <p>{{ $post->body }}</p>
         <ul>
             @foreach ($post->getComments as $comment)
