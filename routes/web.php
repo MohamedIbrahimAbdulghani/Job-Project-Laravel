@@ -25,6 +25,7 @@ Route::get('post/delete/{id}', [PostController::class, 'delete']);
 /************************************************    Routes For Comment  ********************************** */
 Route::get('comment', [CommentController::class, 'index'])->name('comment');
 Route::get('comment/create', [CommentController::class, 'create']);
+Route::get('comment/delete/{id}', [CommentController::class, 'delete']);
 
 
 /************************************************    Routes For Tag  ********************************** */

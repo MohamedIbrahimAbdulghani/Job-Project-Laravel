@@ -13,8 +13,8 @@ class PostController extends Controller
     }
     public function create() {
         $post = Post::create([
-            'title' => 'My Find Unique Post For Testing 4 For Test Delete ',
-            'body' => 'This is to test find for testing 4 For Test Delete ',
+            'title' => 'My Find Unique Post For Testing  For Deleting ',
+            'body' => 'This is to test find for testing 3 for deleting',
             'author' => 'Mohamed Ibrahim Abdulghani',
             'published' => true,
         ]);

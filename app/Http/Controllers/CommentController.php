@@ -14,8 +14,8 @@ class CommentController extends Controller
     public function create() {
         Comment::create([
             'author' => 'Mohamed Ibrahim Abdulghani',
-            'content' => 'This is another test comment number 1 for post number 4 for test delete  ',
-            'post_id' => 5,
+            'content' => 'This is another test comment number 1 for post number 3 for test delete number 2 ',
+            'post_id' => 4,
         ]);
         return redirect('/comment');
     }
@@ -23,4 +23,9 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($id);
         return view('comment.show', compact('comment'));
     }
+    public function delete($id) {
+        Comment::destroy($id);
+        return redirect('/post');
+    }
+
 }

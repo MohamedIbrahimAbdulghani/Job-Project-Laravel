@@ -36,12 +36,14 @@ class TagController extends Controller
         // ]);
 
         ///////////////////   To Get Post From Tag Or To Get Post By Tag /////////////
-        $tag = Tag::find(3);
-        $tag->getPosts()->attach([4]);
+        $tag = Tag::find(1);
+        $tag->getPosts()->attach([2]);
         return response()->json([
             'tag' => $tag->title,
             'post' => $tag->getPosts()->get()
         ]);
+
+
     }
 
 }
