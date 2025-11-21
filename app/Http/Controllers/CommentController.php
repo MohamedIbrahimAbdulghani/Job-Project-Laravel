@@ -8,7 +8,8 @@ use App\Models\Comment;
 class CommentController extends Controller
 {
     public function index() {
-        $comments = Comment::all();
+        // $comments = Comment::all();
+        $comments = Comment::cursorPaginate(5);
         return view('comment.index', compact('comments'));
     }
     public function create() {

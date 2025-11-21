@@ -10,4 +10,6 @@
         <hr>
     @endforeach
 
+    {{ $comments->links() }}
+
 </x-layout>
