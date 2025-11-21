@@ -8,8 +8,8 @@ use App\Models\Comment;
 class CommentController extends Controller
 {
     public function index() {
-        $comment = Comment::all();
-        return view('comment.index', compact('comment'));
+        $comments = Comment::all();
+        return view('comment.index', compact('comments'));
     }
     public function create() {
         Comment::create([
@@ -20,8 +20,8 @@ class CommentController extends Controller
         return redirect('/comment');
     }
     public function show($id) {
-        $comment = Comment::findOrFail($id);
-        return view('comment.show', compact('comment'));
+        $comments = Comment::findOrFail($id);
+        return view('comment.show', compact('comments'));
     }
     public function delete($id) {
         Comment::destroy($id);

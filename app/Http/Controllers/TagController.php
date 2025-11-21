@@ -9,18 +9,18 @@ use App\Models\Post;
 class TagController extends Controller
 {
     public function index() {
-        $tag = Tag::all();
-        return view('tag.index', compact('tag'));
+        $tags = Tag::all();
+        return view('tag.index', compact('tags'));
     }
     public function create() {
-        $tag = Tag::create([
+        $tags = Tag::create([
             'title' => 'this is title for tag 2'
         ]);
         return redirect('/tag');
     }
     public function show($id) {
-        $tag = Tag::findOrFail($id);
-        return view('tag.show', ['tag' => $tag, 'pageTitle'=>$tag->title]);
+        $tags = Tag::findOrFail($id);
+        return view('tag.show', ['tag' => $tags, 'pageTitle'=>$tags->title]);
     }
     public function delete($id) {
         Tag::destroy($id);
