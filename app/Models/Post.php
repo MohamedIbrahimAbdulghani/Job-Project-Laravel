@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    // use HasUuids; // it is build-in function to use UUID - Universal Unique Identifier
+    use HasUuids; // it is build-in function to use UUID - Universal Unique Identifier
 
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
 
-    // protected $keyType = 'string'; // UUID - Universal Unique Identifier { i use this method because it gives me many IDs that are 36 characters long or 128 bit, all different and completely random }
+    protected $keyType = 'string'; // UUID - Universal Unique Identifier { i use this method because it gives me many IDs that are 36 characters long or 128 bit, all different and completely random }
 
-    // public $incrementing = false;
+    public $incrementing = false;
 
     // protected $fillable = ['tittle', 'body', 'author', 'published'];
 

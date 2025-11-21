@@ -9,13 +9,15 @@ use App\Models\Post;
 class TagController extends Controller
 {
     public function index() {
-        $tags = Tag::all();
+        // $tags = Tag::all();
+        $tags = Tag::cursorPaginate(5);
         return view('tag.index', compact('tags'));
     }
     public function create() {
-        $tags = Tag::create([
-            'title' => 'this is title for tag 2'
-        ]);
+        // $tags = Tag::create([
+        //     'title' => 'this is title for tag 2'
+        // ]);
+        Tag::factory(100)->create();
         return redirect('/tag');
     }
     public function show($id) {
@@ -36,7 +38,7 @@ class TagController extends Controller
         // ]);
 
         ///////////////////   To Get Post From Tag Or To Get Post By Tag /////////////
-        $tag = Tag::find(1);
+        $tag = Tag::find(2);
         $tag->getPosts()->attach([2]);
         return response()->json([
             'tag' => $tag->title,
