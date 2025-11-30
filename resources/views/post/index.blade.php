@@ -15,5 +15,7 @@
         <hr>
     @endforeach
 
-        {{ $posts->links() }} {{-- To Show Links For Pagination --}}
+    <div class="mt-3">
+        {{ $posts->links() }}
+    </div>    {{-- To Show Links For Pagination --}}
 </x-layout>

@@ -9,6 +9,8 @@
     @endforeach
 
 
-    {{ $tags->links() }}
+    <div class="mt-3">
+        {{ $tags->links() }}
+    </div>
 
 </x-layout>

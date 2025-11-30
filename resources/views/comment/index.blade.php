@@ -10,6 +10,9 @@
         <hr>
     @endforeach
 
-    {{ $comments->links() }}
+
+    <div class="mt-3">
+        {{ $comments->links() }}
+    </div>
 
 </x-layout>

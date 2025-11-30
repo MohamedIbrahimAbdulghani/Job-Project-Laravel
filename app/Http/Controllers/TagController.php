@@ -8,6 +8,7 @@ use App\Models\Post;
 
 class TagController extends Controller
 {
+
     public function index() {
         // $tags = Tag::all();
         $tags = Tag::cursorPaginate(5);
@@ -17,8 +18,9 @@ class TagController extends Controller
         // $tags = Tag::create([
         //     'title' => 'this is title for tag 2'
         // ]);
-        Tag::factory(100)->create();
-        return redirect('/tag');
+        Tag::factory(1)->create();
+        return response('Successful Creation', 201);
+        // return redirect('/tag');
     }
     public function show($id) {
         $tags = Tag::findOrFail($id);
@@ -26,7 +28,8 @@ class TagController extends Controller
     }
     public function delete($id) {
         Tag::destroy($id);
-        return back();
+        return response('Successfully Deleted', 204);
+        // return back();
     }
 
     public function testManyToMany() {

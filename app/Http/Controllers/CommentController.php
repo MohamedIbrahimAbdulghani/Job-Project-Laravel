@@ -19,9 +19,9 @@ class CommentController extends Controller
         //     'post_id' => 4,
         // ]);
 
-        Comment::factory(100)->create();  // use it to create 100 comment fake by factory
-
-        return redirect('/comment');
+        Comment::factory(1)->create();  // use it to create 100 comment fake by factory
+        return response('Successful Creation', 201);
+        // return redirect('/comment');
     }
     public function show($id) {
         $comments = Comment::findOrFail($id);
@@ -29,7 +29,8 @@ class CommentController extends Controller
     }
     public function delete($id) {
         Comment::destroy($id);
-        return redirect('/post');
+        return response('Successfully Deleted', 204);
+        // return redirect('/post');
     }
 
 }

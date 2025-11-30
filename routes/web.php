@@ -11,24 +11,24 @@ Route::get('/', [IndexController::class, 'index']);
 Route::get('/about', [IndexController::class, 'about']);
 Route::get('/contact', [IndexController::class, 'contact']);
 
-Route::get('jobs', [JobController::class, 'index']);
+Route::get('/jobs', [JobController::class, 'index']);
 
 
 /************************************************    Routes For Blog  ********************************** */
-Route::get('post', [PostController::class, 'index']);
-Route::get('/post/create', [PostController::class, 'create']);
-Route::get('post/{id}', [PostController::class, 'show'])->name('post_by_id');
-Route::get('post/delete/{id}', [PostController::class, 'delete']);
+Route::get('/post', [PostController::class, 'index']);
+// Route::post('/post', [PostController::class, 'create']);
+// Route::delete('/post/delete/{id}', [PostController::class, 'delete']);
+Route::get('/post/{id}', [PostController::class, 'show'])->name('post_by_id');
 
 
 
 /************************************************    Routes For Comment  ********************************** */
-Route::get('comment', [CommentController::class, 'index'])->name('comment');
-Route::get('comment/create', [CommentController::class, 'create']);
-Route::get('comment/delete/{id}', [CommentController::class, 'delete']);
+Route::get('/comment', [CommentController::class, 'index'])->name('comment');
+// Route::post('/comment', [CommentController::class, 'create']);
+// Route::delete('/comment/delete/{id}', [CommentController::class, 'delete']);
 
 
 /************************************************    Routes For Tag  ********************************** */
-Route::get('tag', [TagController::class, 'index']);
-Route::get('tag/create', [TagController::class, 'create']);
-Route::get('tag/testing', [TagController::class, 'testManyToMany']);
+Route::get('/tag', [TagController::class, 'index']);
+// Route::post('/tag', [TagController::class, 'create']);
+Route::get('/tag/testing', [TagController::class, 'testManyToMany']);

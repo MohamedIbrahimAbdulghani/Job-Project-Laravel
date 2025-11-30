@@ -15,15 +15,9 @@ class PostController extends Controller
         return view('post.index', compact('posts'));
     }
     public function create() {
-        // Post::create([
-        //     'title' => 'My Find Unique Post For Testing  ',
-        //     'body' => 'This is to test find for testing  ',
-        //     'author' => 'Mohamed Ibrahim Abdulghani',
-        //     'published' => true,
-        // ]);
-        Post::factory(100)->create(); // use it to create ( 100 post ) fake data by factory
+        Post::factory(1)->create(); // use it to create ( 100 post ) fake data by factory
 
-        return redirect('/post');
+        return response(['message' => 'Successfully created!'], 201);
     }
     public function show($id) {
         $posts = Post::findOrFail($id);
@@ -31,6 +25,6 @@ class PostController extends Controller
     }
     public function delete($id) {
         Post::destroy($id);
-        return back();
+        return response('Successfully Deleted', 204);
     }
 }
