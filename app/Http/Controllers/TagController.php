@@ -2,37 +2,88 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Tag;
-use App\Models\Post;
+use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-
-    public function index() {
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
         // $tags = Tag::all();
         $tags = Tag::cursorPaginate(5);
         return view('tag.index', compact('tags'));
     }
-    public function create() {
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
         // $tags = Tag::create([
         //     'title' => 'this is title for tag 2'
         // ]);
-        Tag::factory(1)->create();
-        return response('Successful Creation', 201);
+        return view('tag.create', ['pageTitle'=>'Create Tag']);
+        // Tag::factory(1)->create();
+        // return redirect('/tag');
+        // return response('Successful Creation', 201);
         // return redirect('/tag');
     }
-    public function show($id) {
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        Tag::create([
+            'title' => $request->title,
+        ]);
+        return redirect('/tag');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
         $tags = Tag::findOrFail($id);
         return view('tag.show', ['tag' => $tags, 'pageTitle'=>$tags->title]);
     }
-    public function delete($id) {
-        Tag::destroy($id);
-        return response('Successfully Deleted', 204);
-        // return back();
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $tag = Tag::findOrFail($id);
+        return view('tag.edit', ['tag' => $tag, 'pageTitle'=>$tag->title]); 
     }
 
-    public function testManyToMany() {
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $tag = Tag::findOrFail($id);
+        $tag->update([
+            'title' => $request->title,
+        ]);
+        return redirect('/tag');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        Tag::destroy($id);
+        return redirect('/tag');
+        // return response('Successfully Deleted', 204);
+        // return back();
+    }
+        public function testManyToMany() {
         ///////////////////   To Get Tags From Post Or To Get Tags By Post
         // $post1 = Post::find(1);
         // $post1->getTags()->attach([3,4]);
@@ -50,5 +101,4 @@ class TagController extends Controller
 
 
     }
-
 }
