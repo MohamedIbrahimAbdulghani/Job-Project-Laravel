@@ -7,14 +7,8 @@ use App\Models\Job;
 
 class IndexController extends Controller
 {
-    public function index() {
+    public function __invoke(Request $request) {
         $jobs = Job::all();
         return view('index', compact('jobs'));
-    }
-    public function about() {
-        return view('about', ['AboutPageTitle'=>'About Page']);
-    }
-    public function contact() {
-        return view('contact');
     }
 }

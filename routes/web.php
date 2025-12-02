@@ -1,15 +1,17 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TagController;
 
-Route::get('/', [IndexController::class, 'index']);
-Route::get('/about', [IndexController::class, 'about']);
-Route::get('/contact', [IndexController::class, 'contact']);
+Route::get('/', IndexController::class);
+Route::get('/about', AboutController::class);
+Route::get('/contact', ContactController::class);
 Route::get('/jobs', [JobController::class, 'index']);
 
 
