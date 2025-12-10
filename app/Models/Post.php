@@ -31,4 +31,5 @@ class Post extends Model
     public function getTags() {
         return $this->belongsToMany(Tag::class);
     }
+    
 }

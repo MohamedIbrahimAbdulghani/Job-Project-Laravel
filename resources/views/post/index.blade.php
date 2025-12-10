@@ -1,7 +1,8 @@
 
 <x-layout title="Blog Page">
 
-    <h1 class="text-3xl font-bold underline mb-3">Blog Page</h1>
+    <h1 class="text-3xl font-bold underline mb-3 d-inline-block">Blog Page</h1>
+    <a class="btn btn-primary ml-3 float-end" href="{{route('post.create')}}">Create new post</a>
 
     @foreach($posts as $post)
         <h1 class="text-2xl"><a href="{{route('post.show', $post->id)}}">{{ $post->title }}</a></h1>

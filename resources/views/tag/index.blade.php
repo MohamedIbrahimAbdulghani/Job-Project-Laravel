@@ -2,6 +2,7 @@
 <x-layout title="Tag Page">
 
     <h1 class="text-3xl font-bold underline mb-3">Tag Page</h1>
+    <a class="btn btn-primary ml-3 float-end" href="{{route('tag.create')}}">Create new tag</a>
 
     @foreach($tags as $tag)
         <h1 class="text-2xl"><a href="{{ route('tag.show', $tag->id) }}">{{ $tag->title }}</a></h1>
