@@ -7,7 +7,11 @@
     @foreach($tags as $tag)
         <h1 class="text-2xl"><a href="{{ route('tag.show', $tag->id) }}">{{ $tag->title }}</a></h1>
         <a class="btn btn-secondary" href="{{route('tag.edit', $tag->id)}}">Edit</a>
-        <a class="btn btn-danger" href="{{route('tag.delete', $tag->id)}}">Delete</a>
+        <form class="d-inline-block" action="{{route('tag.destroy', $tag->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
         <hr>
     @endforeach
 

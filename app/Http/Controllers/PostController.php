@@ -39,7 +39,7 @@ class PostController extends Controller
             'title' => $request->title,
             'body' => $request->body,
             'author' => $request->author,
-            'published' => 1,
+            'published' => $request->has('published') ? 1 : 0 // this is a ternary operator to check if the published checkbox is checked or not
         ]);
         return redirect('/post');
     }

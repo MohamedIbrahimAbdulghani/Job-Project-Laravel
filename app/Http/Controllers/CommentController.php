@@ -37,7 +37,7 @@ class CommentController extends Controller
             'content' => $request->content,
             'post_id' => Post::factory()->create()->id,
         ]);
-        return redirect('/comment');    
+        return redirect('/comment');
     }
 
     /**

@@ -14,10 +14,14 @@
             @endforeach
         </ul>
         <a class="btn btn-secondary" href="{{route('post.edit', $post->id)}}">Edit</a>
-        <a class="btn btn-danger" href="{{route('post.delete', $post->id)}}">Delete</a>
+        <form class="d-inline-block" action="{{route('post.destroy', $post->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
         <hr>
     @endforeach
-    
+
 
     <div class="mt-3">
         {{ $posts->links() }}

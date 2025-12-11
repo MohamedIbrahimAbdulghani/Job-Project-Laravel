@@ -58,7 +58,7 @@ class TagController extends Controller
     public function edit(string $id)
     {
         $tag = Tag::findOrFail($id);
-        return view('tag.edit', ['tag' => $tag, 'pageTitle'=>$tag->title]); 
+        return view('tag.edit', ['tag' => $tag, 'pageTitle'=>$tag->title]);
     }
 
     /**
@@ -83,22 +83,22 @@ class TagController extends Controller
         // return response('Successfully Deleted', 204);
         // return back();
     }
-        public function testManyToMany() {
-        ///////////////////   To Get Tags From Post Or To Get Tags By Post
-        // $post1 = Post::find(1);
-        // $post1->getTags()->attach([3,4]);
-        // return response()->json([
-        //     'post 1' => $post1->getTags()->get(),
-        // ]);
+    //     public function testManyToMany() {
+    //     ///////////////////   To Get Tags From Post Or To Get Tags By Post
+    //     // $post1 = Post::find(1);
+    //     // $post1->getTags()->attach([3,4]);
+    //     // return response()->json([
+    //     //     'post 1' => $post1->getTags()->get(),
+    //     // ]);
 
-        ///////////////////   To Get Post From Tag Or To Get Post By Tag /////////////
-        $tag = Tag::find(2);
-        $tag->getPosts()->attach([2]);
-        return response()->json([
-            'tag' => $tag->title,
-            'post' => $tag->getPosts()->get()
-        ]);
+    //     ///////////////////   To Get Post From Tag Or To Get Post By Tag /////////////
+    //     $tag = Tag::find(2);
+    //     $tag->getPosts()->attach([2]);
+    //     return response()->json([
+    //         'tag' => $tag->title,
+    //         'post' => $tag->getPosts()->get()
+    //     ]);
 
 
-    }
+    // }
 }
