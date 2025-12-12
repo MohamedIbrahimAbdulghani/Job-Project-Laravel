@@ -31,7 +31,10 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $data = Post::findOrFail($id);
+        $data = Post::find($id);
+        if(!$data) {
+            return response()->json(['data' => null, 'Message' => 'Post Not Found'], 404);
+        }
         return response()->json(['data' => $data, 'Message' => 'Post Fetch Successfully'], 200);
     }
 
@@ -40,7 +43,10 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = Post::findOrFail($id);
+        $data = Post::find($id);
+        if(!$data) {
+            return response()->json(['data' => null, 'Message' => 'Post Not Found'], 404);
+        }
         $data->update($request->all());
         return response()->json(['data' => $data, 'Message' => 'Post Updated Successfully'], 200);
     }
@@ -50,8 +56,11 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Post::findOrFail($id);
+        $data = Post::find($id);
+        if(!$data) {
+            return response()->json(['data' => null, 'Message' => 'Post Not Found'], 404);
+        }
         $data->delete();
-        return response()->json(['data' => $data, 'Message' => 'Post Deleted Successfully'], 200);
+        return response()->json(['data' => null, 'Message' => 'Post Deleted Successfully'], 204);
     }
 }
