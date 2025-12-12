@@ -26,7 +26,7 @@ class PostController extends Controller
     {
         return view('post.create', ['pageTitle'=>'Create Post']);
         // Post::factory(1)->create(); // use it to create ( 100 post ) fake data by factory
-        // return redirect('/post');
+        // return redirect('/posts');
         // return response(['message' => 'Successfully created!'], 201);
     }
 
@@ -41,7 +41,7 @@ class PostController extends Controller
             'author' => $request->author,
             'published' => $request->has('published') ? 1 : 0 // this is a ternary operator to check if the published checkbox is checked or not
         ]);
-        return redirect('/post');
+        return redirect('/posts');
     }
 
     /**
@@ -50,7 +50,7 @@ class PostController extends Controller
     public function show(string $id)
     {
         $posts = Post::findOrFail($id);
-        // return redirect('/post');
+        // return redirect('/posts');
         return view('post.show', ['post' => $posts, 'pageTitle'=>$posts->title]);
     }
 
@@ -74,7 +74,7 @@ class PostController extends Controller
             'body' => $request->body,
             'author' => $request->author
         ]);
-        return redirect('/post');
+        return redirect('/posts');
     }
 
     /**
@@ -83,7 +83,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         Post::destroy($id);
-        return redirect('/post');
+        return redirect('/posts');
         // return response('Successfully Deleted', 204);
     }
 }

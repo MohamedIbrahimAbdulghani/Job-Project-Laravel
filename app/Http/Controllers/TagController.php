@@ -27,9 +27,9 @@ class TagController extends Controller
         // ]);
         return view('tag.create', ['pageTitle'=>'Create Tag']);
         // Tag::factory(1)->create();
-        // return redirect('/tag');
+        // return redirect('/tags');
         // return response('Successful Creation', 201);
-        // return redirect('/tag');
+        // return redirect('/tags');
     }
 
     /**
@@ -40,7 +40,7 @@ class TagController extends Controller
         Tag::create([
             'title' => $request->title,
         ]);
-        return redirect('/tag');
+        return redirect('/tags');
     }
 
     /**
@@ -70,7 +70,7 @@ class TagController extends Controller
         $tag->update([
             'title' => $request->title,
         ]);
-        return redirect('/tag');
+        return redirect('/tags');
     }
 
     /**
@@ -79,7 +79,7 @@ class TagController extends Controller
     public function destroy($id)
     {
         Tag::destroy($id);
-        return redirect('/tag');
+        return redirect('/tags');
         // return response('Successfully Deleted', 204);
         // return back();
     }

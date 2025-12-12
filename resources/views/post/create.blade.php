@@ -3,7 +3,7 @@
 
     <h1 class="text-3xl font-bold underline mb-3">Create Post</h1>
 
-    <form action="{{route('post.store')}}" method="POST" class="form">
+    <form action="{{route('posts.store')}}" method="POST" class="form">
         @csrf
         <input type="text" name="title" placeholder="Title" class="form-control mb-2">
         <input type="text" name="body" placeholder="Body" class="form-control mb-2">

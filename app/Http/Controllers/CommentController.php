@@ -23,7 +23,7 @@ class CommentController extends Controller
     public function create()
     {
         // Comment::factory(1)->create();  // use it to create 100 comment fake by factory
-        // return redirect('/comment');
+        // return redirect('/comments');
         return view('comment.create', ['pageTitle'=>'Create Comment']);
     }
 
@@ -37,7 +37,7 @@ class CommentController extends Controller
             'content' => $request->content,
             'post_id' => Post::factory()->create()->id,
         ]);
-        return redirect('/comment');
+        return redirect('/comments');
     }
 
     /**
@@ -68,7 +68,7 @@ class CommentController extends Controller
             'author' => $request->author,
             'content' => $request->content,
         ]);
-        return redirect('/comment');
+        return redirect('/comments');
     }
 
     /**
@@ -77,6 +77,6 @@ class CommentController extends Controller
     public function destroy(string $id)
     {
         Comment::destroy($id);
-        return redirect('/comment');
+        return redirect('/comments');
     }
 }
