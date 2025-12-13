@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
@@ -14,7 +14,7 @@ class TagController extends Controller
     public function index()
     {
         $data = Tag::all();
-        return response()->json(['data' => $data, 'Message' => 'Tags Fetched Successfully'], 200);
+        return response()->json(['data' => $data, 'success' => true, 'Message' => 'Tags Fetched Successfully'], 200);
     }
 
     /**
@@ -23,7 +23,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $data = Tag::create($request->all());
-        return response()->json(['data' => $data, 'Message' => 'Tag Created Successfully'], 201);
+        return response()->json(['data' => $data, 'success' => true, 'Message' => 'Tag Created Successfully'], 201);
     }
 
     /**
@@ -33,9 +33,9 @@ class TagController extends Controller
     {
         $data = Tag::find($id);
         if(!$data) {
-            return response()->json(['data' => null, 'Messages' => 'Tag Is Not Found !'], 404);
+            return response()->json(['data' => null, 'success' => false, 'Messages' => 'Tag Is Not Found !'], 404);
         }
-        return response()->json(['data' => $data, 'Message' => 'Tag Fetched Successfully'], 200);
+        return response()->json(['data' => $data, 'success' => true, 'Message' => 'Tag Fetched Successfully'], 200);
     }
 
     /**
@@ -45,10 +45,10 @@ class TagController extends Controller
     {
         $data = Tag::find($id);
         if(!$data) {
-            return response()->json(['data' => null, 'Messages' => 'Tag Is Not Found !'], 404);
+            return response()->json(['data' => null, 'success' => false, 'Messages' => 'Tag Is Not Found !'], 404);
         }
         $data->update($request->all());
-        return response()->json(['data' => $data, 'Message' => 'Tag Updated Successfully'], 200);
+        return response()->json(['data' => $data, 'success' => true, 'Message' => 'Tag Updated Successfully'], 200);
     }
 
     /**
@@ -58,9 +58,9 @@ class TagController extends Controller
     {
         $data = Tag::find($id);
         if(!$data) {
-            return response()->json(['data' => null, 'Messages' => 'Tag Is Not Found !'], 404);
+            return response()->json(['data' => null, 'success' => false, 'Messages' => 'Tag Is Not Found !'], 404);
         }
         $data->delete();
-        return response()->json(['data' => null, 'Message' => 'Tag Deleted Successfully'], 204);
+        return response()->json(['data' => null, 'success' => true, 'Message' => 'Tag Deleted Successfully'], 204);
     }
 }

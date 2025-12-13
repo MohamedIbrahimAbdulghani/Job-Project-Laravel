@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class PostController extends Controller
     public function index()
     {
         $data = Post::all();
-        return response()->json(['data' =>$data, 'Message' => 'Post Fetch Successfully'], 200);
+        return response()->json(['data' =>$data, 'success' => true, 'Message' => 'Post Fetch Successfully'], 200);
     }
 
     /**
@@ -23,7 +23,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = Post::create($request->all());
-        return response()->json(['data' => $data, 'Message' => 'Post Created Successfully'], 201);
+        return response()->json(['data' => $data, 'success' => true, 'Message' => 'Post Created Successfully'], 201);
     }
 
     /**
@@ -33,9 +33,9 @@ class PostController extends Controller
     {
         $data = Post::find($id);
         if(!$data) {
-            return response()->json(['data' => null, 'Message' => 'Post Not Found'], 404);
+            return response()->json(['data' => null, 'success' => false, 'Message' => 'Post Not Found'], 404);
         }
-        return response()->json(['data' => $data, 'Message' => 'Post Fetch Successfully'], 200);
+        return response()->json(['data' => $data, 'success' => true, 'Message' => 'Post Fetch Successfully'], 200);
     }
 
     /**
@@ -45,10 +45,10 @@ class PostController extends Controller
     {
         $data = Post::find($id);
         if(!$data) {
-            return response()->json(['data' => null, 'Message' => 'Post Not Found'], 404);
+            return response()->json(['data' => null, 'success' => false, 'Message' => 'Post Not Found'], 404);
         }
         $data->update($request->all());
-        return response()->json(['data' => $data, 'Message' => 'Post Updated Successfully'], 200);
+        return response()->json(['data' => $data, 'success' => true, 'Message' => 'Post Updated Successfully'], 200);
     }
 
     /**
@@ -58,9 +58,9 @@ class PostController extends Controller
     {
         $data = Post::find($id);
         if(!$data) {
-            return response()->json(['data' => null, 'Message' => 'Post Not Found'], 404);
+            return response()->json(['data' => null, 'success' => false, 'Message' => 'Post Not Found'], 404);
         }
         $data->delete();
-        return response()->json(['data' => null, 'Message' => 'Post Deleted Successfully'], 204);
+        return response()->json(['data' => null, 'success' => true, 'Message' => 'Post Deleted Successfully'], 204);
     }
 }

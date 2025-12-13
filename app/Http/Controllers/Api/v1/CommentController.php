@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ class CommentController extends Controller
     public function index()
     {
         $data = Comment::all();
-        return response()->json(['data' => $data, 'Message' => 'Comments Fetched Successfully'], 200);
+        return response()->json(['data' => $data, 'success' => true, 'Message' => 'Comments Fetched Successfully'], 200);
     }
 
     /**
@@ -28,7 +28,7 @@ class CommentController extends Controller
             'content' => $request->content,
             'post_id' => Post::factory()->create()->id
         ]);
-        return response()->json(['data' => $data, 'Message' => 'Comment Created Successfully'], 201);
+        return response()->json(['data' => $data, 'success' => true, 'Message' => 'Comment Created Successfully'], 201);
     }
 
     /**
@@ -38,9 +38,9 @@ class CommentController extends Controller
     {
         $data = Comment::find($id);
         if(!$data) {
-            return response()->json(['data' => null, 'Messages' => 'Comment Is Not Found !'], 404);
+            return response()->json(['data' => null, 'success' => false, 'Messages' => 'Comment Is Not Found !'], 404);
         }
-        return response()->json(['data' => $data, 'Message' => 'Comment Fetched Successfully'], 200);
+        return response()->json(['data' => $data, 'success' => true, 'Message' => 'Comment Fetched Successfully'], 200);
     }
 
     /**
@@ -50,10 +50,10 @@ class CommentController extends Controller
     {
         $data = Comment::find($id);
         if(!$data) {
-            return response()->json(['data' => null, 'Messages' => 'Comment Is Not Found !'], 404);
+            return response()->json(['data' => null, 'success' => false, 'Messages' => 'Comment Is Not Found !'], 404);
         }
         $data->update($request->all());
-        return response()->json(['data' => $data, 'Message' => 'Comment Fetched Successfully'], 200);
+        return response()->json(['data' => $data, 'success' => true, 'Message' => 'Comment Fetched Successfully'], 200);
     }
 
     /**
@@ -63,9 +63,9 @@ class CommentController extends Controller
     {
         $data = Comment::find($id);
         if(!$data) {
-            return response()->json(['data' => null, 'Messages' => 'Comment Is Not Found !'], 404);
+            return response()->json(['data' => null, 'success' => false, 'Messages' => 'Comment Is Not Found !'], 404);
         }
         $data->delete();
-        return response()->json(['data' => null, 'Message' => 'Comment Deleted Successfully'], 204);
+        return response()->json(['data' => null, 'success' => true, 'Message' => 'Comment Deleted Successfully'], 204);
     }
 }
