@@ -30,9 +30,12 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-                        <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
-                        <x-nav-link href="/abouts" :active="request()->is('about')">About</x-nav-link>
-                        <x-nav-link href="/contacts" :active="request()->is('contact')">Contact</x-nav-link>
+                        <x-nav-link href="/" :active="request()->is('/')" style="color:white; text-decoration:none">Home</x-nav-link>
+                        <x-nav-link href="/abouts" :active="request()->is('about')" style="color:white; text-decoration:none">About</x-nav-link>
+                        <x-nav-link href="/contacts" :active="request()->is('contact')" style="color:white; text-decoration:none">Contact</x-nav-link>
+                        <x-nav-link href="/posts" :active="request()->is('posts')" style="color:white; text-decoration:none">Posts</x-nav-link>
+                        {{-- <x-nav-link href="/comments" :active="request()->is('comments')" style="color:white; text-decoration:none">Comments</x-nav-link>
+                        <x-nav-link href="/tags" :active="request()->is('tags')" style="color:white; text-decoration:none">Tags</x-nav-link> --}}
                         </div>
                     </div>
                 </div>
