@@ -22,12 +22,12 @@ class AddPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required',
-            'body' => 'required',
-            'author' => 'required'
+            'title' => 'bail|required',
+            'body' => 'bail|required',
+            'author' => 'bail|required'
         ];
     }
-    public function message() {
+    public function messages() {
         return [
             'title.required' => 'Field is required',
             'body.required' => 'Field is required',

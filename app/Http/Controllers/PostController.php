@@ -16,7 +16,7 @@ class PostController extends Controller
         // $post = Post::all();
         // $posts = Post::paginate(5); // to make paginate in show posts { show number of pages }
         // $posts = Post::simplePaginate(5); // to make paginate in show posts { show next and previous pages }
-        $posts = Post::cursorPaginate(5); // to make paginate in show posts but in this case will make page number secure number pages
+        $posts = Post::latest()->cursorPaginate(5); // to make paginate in show posts but in this case will make page number secure number pages
         return view('post.index', compact('posts'));
     }
 
@@ -37,13 +37,19 @@ class PostController extends Controller
     public function store(AddPostRequest $request)
     {
         // $validated = $request->validate();
-        Post::create([
-            'title' => $request->title,
-            'body' => $request->body,
-            'author' => $request->author,
-            'published' => $request->has('published') ? 1 : 0 // this is a ternary operator to check if the published checkbox is checked or not
-        ]);
-        return redirect('/posts');
+        // Post::create([
+        //     'title' => $request->title,
+        //     'body' => $request->body,
+        //     'author' => $request->author,
+        //     'published' => $request->has('published') ? 1 : 0 // this is a ternary operator to check if the published checkbox is checked or not
+        // ]);
+        $post = new Post();
+        $post->title = $request->input('title');
+        $post->author = $request->input('author');
+        $post->body = $request->input('body');
+        $post->published = $request->has('published') ? 1 : 0 ; // this is a ternary operator to check if the published checkbox is checked or not
+        $post->save();
+        return redirect('/posts')->with('success', 'Post Created successfully!');
     }
 
     /**
@@ -68,15 +74,23 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AddPostRequest $request, string $id)
     {
         $post = Post::findOrFail($id);
-        $post->update([
-            'title' => $request->title,
-            'body' => $request->body,
-            'author' => $request->author
-        ]);
-        return redirect('/posts');
+        // $post->update([
+        //     'title' => $request->title,
+        //     'body' => $request->body,
+        //     'author' => $request->author,
+        //     'published' => $request->has('published') ? 1 : 0 ,
+        // ]);
+        // return redirect('/posts');
+
+        $post->title = $request->input('title');
+        $post->author = $request->input('author');
+        $post->body = $request->input('body');
+        $post->published = $request->has('published'); // this is a ternary operator to check if the published checkbox is checked or not
+        $post->save();
+        return redirect('/posts')->with('success', 'Post Updated Successfully!');
     }
 
     /**

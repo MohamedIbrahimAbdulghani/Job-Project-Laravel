@@ -13,7 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = Post::all();
+        // $data = Post::all();  // this is to show all posts but show the first i added it
+        $data = Post::latest()->get(); // this is to show the last post i added it
         return response()->json(['data' =>$data, 'success' => true, 'Message' => 'Post Fetch Successfully'], 200);
     }
 
