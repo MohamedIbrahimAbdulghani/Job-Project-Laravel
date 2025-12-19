@@ -12,6 +12,7 @@
                 <div class="col-6">
                     <label for="title">Title</label>
                     <input type="text" name="title" placeholder="Title" class="form-control mb-2 mt-2" value="{{ old('title', $post->title) }}">
+                    <input type="hidden" name="id" class="form-control mb-2 mt-2" value="{{$post->id}}">
                     @error('title')
                         <div class="alert alert-danger mb-2" role="alert">
                             <span>{{ $message }}</span>
@@ -43,7 +44,7 @@
                 </div>
 
                 <div class="published">
-                    <input type="checkbox" id="published" name="published" class="form-check-input "value="1"{{ old('published') || (!old() && $post->published) ? 'checked' : '' }}>
+                    <input type="checkbox" id="published" name="published" class="form-check-input " value="1"{{ old('published') || (!old() && $post->published) ? 'checked' : '' }}>
                     <label for="published" class="form-check-label " style="margin-left: 5px;">Is Published?</label>
                     <p id="published" class="small" style="margin-left: 25px">Do you want it published or saved as draft.</p>
             </div>
