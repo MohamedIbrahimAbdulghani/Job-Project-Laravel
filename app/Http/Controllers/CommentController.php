@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\AddCommentRequest;
 
 class CommentController extends Controller
 {
@@ -13,7 +14,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::cursorPaginate(5);
+        $comments = Comment::latest()->cursorPaginate(5);
         return view('comment.index', compact('comments'));
     }
 
@@ -30,14 +31,15 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AddCommentRequest $request)
     {
+        $post = Post::findOrFail($request->input('post_id'));
         Comment::create([
             'author' => $request->author,
             'content' => $request->content,
-            'post_id' => Post::factory()->create()->id,
+            'post_id' => $request->post_id
         ]);
-        return redirect('/comments');
+        return redirect('/comments')->with('success', 'Comments Added Successfully!');
     }
 
     /**
@@ -61,14 +63,14 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AddCommentRequest $request, string $id)
     {
         $comment = Comment::findOrFail($id);
         $comment->update([
             'author' => $request->author,
             'content' => $request->content,
         ]);
-        return redirect('/comments');
+        return redirect('/comments')->with('success', 'Comments Update Successfully!');
     }
 
     /**
@@ -77,6 +79,6 @@ class CommentController extends Controller
     public function destroy(string $id)
     {
         Comment::destroy($id);
-        return redirect('/comments');
+        return redirect('/comments')->with('delete', 'Comments Deleted Successfully!');
     }
 }

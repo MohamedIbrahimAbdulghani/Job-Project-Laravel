@@ -14,7 +14,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $data = Comment::all();
+        // $data = Comment::all();
+        $data = Comment::latest()->get();
         return response()->json(['data' => $data, 'success' => true, 'Message' => 'Comments Fetched Successfully'], 200);
     }
 

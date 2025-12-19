@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use App\Http\Requests\AddTagRequest;
+
 
 class TagController extends Controller
 {
@@ -13,7 +15,7 @@ class TagController extends Controller
     public function index()
     {
         // $tags = Tag::all();
-        $tags = Tag::cursorPaginate(5);
+        $tags = Tag::latest()->cursorPaginate(5);
         return view('tag.index', compact('tags'));
     }
 
@@ -35,12 +37,12 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AddTagRequest $request)
     {
         Tag::create([
             'title' => $request->title,
         ]);
-        return redirect('/tags');
+        return redirect('/tags')->with('success', 'Tags Added Successfully!');
     }
 
     /**
@@ -64,13 +66,13 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AddTagRequest $request, string $id)
     {
         $tag = Tag::findOrFail($id);
         $tag->update([
             'title' => $request->title,
         ]);
-        return redirect('/tags');
+        return redirect('/tags')->with('success', 'Tags Updated Successfully!');
     }
 
     /**
@@ -79,7 +81,7 @@ class TagController extends Controller
     public function destroy($id)
     {
         Tag::destroy($id);
-        return redirect('/tags');
+        return redirect('/tags')->with('delete', 'Tags Deleted Successfully!');
         // return response('Successfully Deleted', 204);
         // return back();
     }

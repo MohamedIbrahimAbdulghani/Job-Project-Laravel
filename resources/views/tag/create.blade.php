@@ -6,6 +6,12 @@
     <form action="{{route('tags.store')}}" method="POST" class="form">
         @csrf
         <input type="text" name="title" placeholder="Title" class="form-control mb-2">
+            @error('title')
+                <div class="alert alert-danger mb-2" role="alert">
+                    <span>{{ $message }}</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="float: right !important"></button>
+                </div>
+            @enderror
         <button type="submit" class="btn btn-primary d-table m-auto">Submit</button>
     </form>
 

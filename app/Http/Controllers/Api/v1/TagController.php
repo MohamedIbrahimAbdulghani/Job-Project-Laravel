@@ -13,7 +13,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        $data = Tag::all();
+        // $data = Tag::all();
+        $data = Tag::latest()->get();
         return response()->json(['data' => $data, 'success' => true, 'Message' => 'Tags Fetched Successfully'], 200);
     }
 
