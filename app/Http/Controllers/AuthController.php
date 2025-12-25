@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Requests\ValidationAboutSignUp;
+use App\Http\Requests\ValidationAboutSignIn;
 
 class AuthController extends Controller
 {
@@ -15,7 +17,7 @@ class AuthController extends Controller
         return view('auth.signup');
     }
     // this function to make login
-    public function SignUp(Request $request) {
+    public function SignUp(ValidationAboutSignUp $request) {
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -27,8 +29,14 @@ class AuthController extends Controller
     public function ShowSignIn() {
         return view('auth.signin');
     }
-    public function SignIn(Request $request) {
-        //
+    public function SignIn(ValidationAboutSignIn $request) {
+        $credentials = $request->only('email', 'password');
+        if(Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+        } else {
+            return back()->withErrors(['email' => 'The provided credentials do not match our records']);
+        }
+        return redirect('/');
     }
     public function logout() {
         Auth::logout();

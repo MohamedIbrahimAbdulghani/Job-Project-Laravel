@@ -562,8 +562,6 @@
                     >
                     @error('email')
                         <div class="invalid-feedback">{{ $message }}</div>
-                    @else
-                        <div class="invalid-feedback">Please enter a valid email address.</div>
                     @enderror
                 </div>
 
@@ -588,8 +586,6 @@
                     </div>
                     @error('password')
                         <div class="invalid-feedback">{{ $message }}</div>
-                    @else
-                        <div class="invalid-feedback">Please enter your password.</div>
                     @enderror
                 </div>
 
@@ -627,7 +623,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
+    {{-- <script>
         // Form validation
         (function() {
             'use strict';
@@ -671,6 +667,6 @@
                 this.parentElement.style.transform = 'scale(1)';
             });
         });
-    </script>
+    </script> --}}
 </body>
 </html>

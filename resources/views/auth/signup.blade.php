@@ -532,7 +532,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Form Validation Script -->
-    <script>
+    {{-- <script>
         // Bootstrap form validation
         (function() {
             'use strict';
@@ -584,7 +584,7 @@
                 passwordConfirmation.setCustomValidity('');
             }
         });
-    </script>
+    </script> --}}
 </body>
 </html>
 
