@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Job Board</title>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         * {
             margin: 0;
@@ -432,11 +432,11 @@
                         <label for="name" class="form-label">
                             <i class="bi bi-person-fill text-primary"></i> Full Name
                         </label>
-                        <input 
-                            type="text" 
-                            class="form-control @error('name') is-invalid @enderror" 
-                            id="name" 
-                            name="name" 
+                        <input
+                            type="text"
+                            class="form-control @error('name') is-invalid @enderror"
+                            id="name"
+                            name="name"
                             placeholder="Enter Name"
                             value="{{ old('name') }}"
                             required
@@ -453,11 +453,11 @@
                         <label for="email" class="form-label">
                             <i class="bi bi-envelope-fill text-primary"></i> Email Address
                         </label>
-                        <input 
-                            type="email" 
-                            class="form-control @error('email') is-invalid @enderror" 
-                            id="email" 
-                            name="email" 
+                        <input
+                            type="email"
+                            class="form-control @error('email') is-invalid @enderror"
+                            id="email"
+                            name="email"
                             placeholder="Enter Email"
                             value="{{ old('email') }}"
                             required
@@ -475,11 +475,11 @@
                             <i class="bi bi-lock-fill text-primary"></i> Password
                         </label>
                         <div class="input-group">
-                            <input 
-                                type="password" 
-                                class="form-control @error('password') is-invalid @enderror" 
-                                id="password" 
-                                name="password" 
+                            <input
+                                type="password"
+                                class="form-control @error('password') is-invalid @enderror"
+                                id="password"
+                                name="password"
                                 placeholder="Enter Password"
                                 required
                             >
@@ -498,10 +498,10 @@
                     <!-- Terms and Conditions -->
                     <div class="mb-4 form-group">
                         <div class="form-check">
-                            <input 
-                                class="form-check-input" 
-                                type="checkbox" 
-                                id="terms" 
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="terms"
                                 name="terms"
                                 required
                             >
@@ -537,7 +537,7 @@
         (function() {
             'use strict';
             const form = document.getElementById('signupForm');
-            
+
             form.addEventListener('submit', function(event) {
                 if (!form.checkValidity()) {
                     event.preventDefault();
@@ -555,7 +555,7 @@
         togglePassword.addEventListener('click', function() {
             const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
             password.setAttribute('type', type);
-            
+
             // Toggle eye icon
             if (type === 'password') {
                 eyeIcon.classList.remove('bi-eye-slash');
@@ -568,7 +568,7 @@
 
         // Password confirmation validation
         const passwordConfirmation = document.getElementById('password_confirmation');
-        
+
         passwordConfirmation.addEventListener('input', function() {
             if (password.value !== passwordConfirmation.value) {
                 passwordConfirmation.setCustomValidity('Passwords do not match');

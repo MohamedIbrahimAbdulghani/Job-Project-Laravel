@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In - Job Board</title>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -551,11 +551,11 @@
                         <i class="bi bi-envelope-fill"></i>
                         Email Address
                     </label>
-                    <input 
-                        type="email" 
-                        class="form-control @error('email') is-invalid @enderror" 
-                        id="email" 
-                        name="email" 
+                    <input
+                        type="email"
+                        class="form-control @error('email') is-invalid @enderror"
+                        id="email"
+                        name="email"
                         placeholder="Enter your email"
                         value="{{ old('email') }}"
                         required
@@ -574,11 +574,11 @@
                         Password
                     </label>
                     <div class="input-wrapper">
-                        <input 
-                            type="password" 
-                            class="form-control @error('password') is-invalid @enderror" 
-                            id="password" 
-                            name="password" 
+                        <input
+                            type="password"
+                            class="form-control @error('password') is-invalid @enderror"
+                            id="password"
+                            name="password"
                             placeholder="Enter your password"
                             required
                         >
@@ -596,10 +596,10 @@
                 <!-- Remember Me & Forgot Password -->
                 <div class="form-options">
                     <div class="form-check">
-                        <input 
-                            class="form-check-input" 
-                            type="checkbox" 
-                            id="remember" 
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="remember"
                             name="remember"
                         >
                         <label class="form-check-label" for="remember">
@@ -632,7 +632,7 @@
         (function() {
             'use strict';
             const form = document.getElementById('signinForm');
-            
+
             form.addEventListener('submit', function(event) {
                 if (!form.checkValidity()) {
                     event.preventDefault();
@@ -650,7 +650,7 @@
         togglePassword.addEventListener('click', function() {
             const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
             password.setAttribute('type', type);
-            
+
             if (type === 'password') {
                 eyeIcon.classList.remove('bi-eye-slash');
                 eyeIcon.classList.add('bi-eye');
@@ -666,7 +666,7 @@
             input.addEventListener('focus', function() {
                 this.parentElement.style.transform = 'scale(1.01)';
             });
-            
+
             input.addEventListener('blur', function() {
                 this.parentElement.style.transform = 'scale(1)';
             });
