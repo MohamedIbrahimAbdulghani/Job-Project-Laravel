@@ -25,6 +25,11 @@ Route::prefix('v1')->name('api.')->group(function() {
         Route::post('signin', [AuthController::class, 'signIn']);
 
         // only if i am authenticated with JWT ( Authorization Header )
+        Route::middleware('auth:api')->group(function() {
+            Route::get('me', [AuthController::class, 'me']);
+            Route::post('refresh', [AuthController::class, 'refresh']);
+            Route::post('logout', [AuthController::class, 'logout']);
+        });
     });
 });
 

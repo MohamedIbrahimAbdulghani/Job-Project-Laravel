@@ -15,15 +15,18 @@ class AuthController extends Controller
         if(!$token) {
             return response()->json(['Message' => 'Unauthorized access!'], 401);
         }
-        return response()->json(['access_token' => $token, 'expires_in' => auth('api')->factory()->getTTL() * 60]);
+        return response()->json(['access_token' => $token, 'expires_in' => auth('api')->factory()->getTTL() * 60], 200);
     }
     public function refresh() {
-
+        $refreshToken = auth('api')->refresh();
+        return response()->json(['refresh_token' => $refreshToken, 'expires_in' => auth('api')->factory()->getTTL() * 60], 200);
     }
     public function me() {
-
+        $user = auth('api')->user();
+        return response()->json(["data" => $user], 200);
     }
     public function logout() {
-
+        auth('api')->logout();
+        return response()->json(["Message" => "Logged out successfully! "], 200);
     }
 }
