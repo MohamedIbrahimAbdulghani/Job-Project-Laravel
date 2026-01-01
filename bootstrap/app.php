@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Foundation\Application;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\OnlyMe;
+use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -16,5 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias(['onlyme' => OnlyMe::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        // Handle 401 errors for API routes
+        $exceptions->render(function(AuthenticationException $exc, Request $request) {
+            if($request->is('api/*')) {
+                return response()->json(['Message' => 'Unauthenticated Please Login !'], 401);
+            }
+        });
     })->create();

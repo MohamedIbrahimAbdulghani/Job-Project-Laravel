@@ -10,9 +10,9 @@ use App\Http\Controllers\Api\v1\AuthController;
 
 
 Route::prefix('v1')->name('api.')->group(function() {
-    Route::apiResource('posts', PostController::class);
-    Route::apiResource('comments', CommentController::class);
-    Route::apiResource('tags', TagController::class);
+    Route::apiResource('posts', PostController::class)->middleware('auth:api');
+    Route::apiResource('comments', CommentController::class)->middleware('auth:api');
+    Route::apiResource('tags', TagController::class)->middleware('auth:api');
 
     // Routes to make authentication
     /**
