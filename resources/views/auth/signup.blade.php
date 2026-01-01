@@ -532,7 +532,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Form Validation Script -->
-    {{-- <script>
+    <!-- {{-- <script>
         // Bootstrap form validation
         (function() {
             'use strict';
@@ -584,7 +584,28 @@
                 passwordConfirmation.setCustomValidity('');
             }
         });
-    </script> --}}
+    </script> --}} -->
+
+    <!-- Password toggle -->
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        togglePassword.addEventListener('click', function() {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+
+            // Toggle eye icon
+            if (type === 'password') {
+                eyeIcon.classList.remove('bi-eye-slash');
+                eyeIcon.classList.add('bi-eye');
+            } else {
+                eyeIcon.classList.remove('bi-eye');
+                eyeIcon.classList.add('bi-eye-slash');
+            }
+        });
+    </script>
 </body>
 </html>
 

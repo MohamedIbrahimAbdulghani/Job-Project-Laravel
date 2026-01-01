@@ -623,7 +623,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-    {{-- <script>
+     <!-- <script>
         // Form validation
         (function() {
             'use strict';
@@ -638,7 +638,22 @@
             }, false);
         })();
 
-        // Password toggle
+
+        // Input focus animations
+        const inputs = document.querySelectorAll('.form-control');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.01)';
+            });
+
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>  -->
+
+    <!-- Password toggle -->
+    <script>
         const togglePassword = document.getElementById('togglePassword');
         const password = document.getElementById('password');
         const eyeIcon = document.getElementById('eyeIcon');
@@ -655,18 +670,6 @@
                 eyeIcon.classList.add('bi-eye-slash');
             }
         });
-
-        // Input focus animations
-        const inputs = document.querySelectorAll('.form-control');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'scale(1.01)';
-            });
-
-            input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'scale(1)';
-            });
-        });
-    </script> --}}
+    </script>
 </body>
 </html>

@@ -24,6 +24,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
         ]);
         Auth::login($user); // this is to make data from user and make login about this data or can make login to user
+        // Auth::login($user); // this is make { Session-Based Login About Cookie } to user and make login about this session or can make login to user
         return redirect('/');
     }
     public function ShowSignIn() {
