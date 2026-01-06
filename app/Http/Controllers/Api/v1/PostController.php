@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -23,7 +24,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Post::create($request->all());
+        // $data = Post::create($request->all());
+        $data = Post::create([
+            'title'     => $request->title,
+            'body'      => $request->body,
+            'published' => $request->published ?? 0,
+            'user_id'   => auth()->id(),
+        ]);
         return response()->json(['data' => $data, 'success' => true, 'Message' => 'Post Created Successfully'], 201);
     }
 
@@ -47,6 +54,10 @@ class PostController extends Controller
         $data = Post::find($id);
         if(!$data) {
             return response()->json(['data' => null, 'success' => false, 'Message' => 'Post Not Found'], 404);
+        }
+        // this is to use ( OBAC ) Ownership Based Access Control
+        if($data->user_id !== Auth::id()) {
+            return response()->json(['data' => null, 'error' => "You can't edit about this post because you don't created by you!"]);
         }
         $data->update($request->all());
         return response()->json(['data' => $data, 'success' => true, 'Message' => 'Post Updated Successfully'], 200);

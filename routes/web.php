@@ -30,16 +30,19 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function() {
     /************************************************    Routes For Blog  ********************************** */
     // Authorization Rules
-    // 1- Admin User (admin)
+    // 1- (admin)
     Route::middleware('role:admin')->group(function() {
+        Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+    });
+    // 2- (user, admin, editor)
+    Route::middleware('role:admin,editor')->group(function() {
         Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
         Route::post('posts/store', [PostController::class, 'store'])->name('posts.store');
         Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
         Route::PUT('posts/{id}', [PostController::class, 'update'])->name('posts.update');
-        Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
     });
-    // 2- Normal User (user, admin)
-    Route::middleware('role:user,admin')->group(function() {
+    // 3- (user, admin, editor)
+    Route::middleware('role:user,admin,editor')->group(function() {
         Route::get('posts', [PostController::class, 'index'])->name('posts');
         Route::get('posts/{id}/show', [PostController::class, 'show'])->name('posts.show');
     });

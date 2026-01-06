@@ -9,22 +9,11 @@
         @csrf
         @method('PUT')
         <div class="row">
-                <div class="col-6">
+                <div class="col-12">
                     <label for="title">Title</label>
                     <input type="text" name="title" placeholder="Title" class="form-control mb-2 mt-2" value="{{ old('title', $post->title) }}">
                     <input type="hidden" name="id" class="form-control mb-2 mt-2" value="{{$post->id}}">
                     @error('title')
-                        <div class="alert alert-danger mb-2" role="alert">
-                            <span>{{ $message }}</span>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="float: right !important"></button>
-                        </div>
-                    @enderror
-                </div>
-
-                <div class="col-6">
-                    <label for="author">Author</label>
-                    <input type="text" name="author" id="author" placeholder="Author" class="form-control mb-2 mt-2" value="{{old('author', $post->author)}}" >
-                    @error('author')
                         <div class="alert alert-danger mb-2" role="alert">
                             <span>{{ $message }}</span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="float: right !important"></button>

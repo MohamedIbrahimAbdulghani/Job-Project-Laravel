@@ -12,14 +12,17 @@ use App\Http\Controllers\Api\v1\AuthController;
 Route::prefix('v1')->name('api.')->group(function() {
     // Route::apiResource('posts', PostController::class)->middleware('auth:api');
     // Authorization Rules
-    // 1- Admin User (admin)
+    // 1- (admin)
     Route::middleware('auth:api','role:admin')->group(function() {
-        Route::post('posts/store', [PostController::class, 'store'])->name('posts.store');
-        Route::PATCH('posts/{id}', [PostController::class, 'update'])->name('posts.update');
         Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
     });
-    // 2- Normal User (user, admin)
-    Route::middleware('auth:api','role:user,admin')->group(function() {
+    // 2- (admin, editor)
+    Route::middleware('auth:api','role:admin,editor')->group(function() {
+        Route::post('posts/store', [PostController::class, 'store'])->name('posts.store');
+        Route::PATCH('posts/{id}', [PostController::class, 'update'])->name('posts.update');
+    });
+    // 3- (user, admin, editor)
+    Route::middleware('auth:api','role:user,admin,editor')->group(function() {
         Route::get('posts', [PostController::class, 'index'])->name('posts');
         Route::get('posts/{id}/show', [PostController::class, 'show'])->name('posts.show');
     });

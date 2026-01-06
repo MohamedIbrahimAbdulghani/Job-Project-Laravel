@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AddPostRequest;
 
 class PostController extends Controller
@@ -45,8 +46,8 @@ class PostController extends Controller
         // ]);
         $post = new Post();
         $post->title = $request->input('title');
-        $post->author = $request->input('author');
         $post->body = $request->input('body');
+        $post->user_id = Auth::user()->id;
         $post->published = $request->has('published') ? 1 : 0 ; // this is a ternary operator to check if the published checkbox is checked or not
         $post->save();
         return redirect('/posts')->with('success', 'Post Created successfully!');
@@ -68,6 +69,10 @@ class PostController extends Controller
     public function edit(string $id)
     {
         $post = Post::findOrFail($id);
+        // this is to use ( OBAC ) Ownership Based Access Control
+        if($post->user_id !== Auth::id()) {
+            return redirect('posts')->with('error', "You can't edit about this post because you don't created by you!");
+        }
         return view('post.edit', ['pageTitle'=>'Edit Post', 'post'=>$post]);
     }
 
@@ -86,7 +91,6 @@ class PostController extends Controller
         // return redirect('/posts');
 
         $post->title = $request->input('title');
-        $post->author = $request->input('author');
         $post->body = $request->input('body');
         $post->published = $request->has('published'); // this is a ternary operator to check if the published checkbox is checked or not
         $post->save();

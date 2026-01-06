@@ -18,11 +18,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -63,5 +59,8 @@ class User extends Authenticatable implements JWTSubject
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function post() {
+        return $this->hasMany(Post::class);
     }
 }

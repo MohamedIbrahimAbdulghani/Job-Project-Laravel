@@ -7,21 +7,10 @@
         <form action="{{route('posts.store')}}" method="POST" class="form">
             @csrf
             <div class="row">
-                    <div class="col-6">
+                    <div class="col-12">
                         <label for="title">Title</label>
                         <input type="text" name="title" placeholder="Title" class="form-control mb-2 mt-2" value="{{ old('title') }}">
                         @error('title')
-                            <div class="alert alert-danger mb-2" role="alert">
-                                <span>{{ $message }}</span>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="float: right !important"></button>
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="col-6">
-                        <label for="author">Author</label>
-                        <input type="text" name="author" id="author" placeholder="Author" class="form-control mb-2 mt-2" value="{{ old('author') }}" >
-                        @error('author')
                             <div class="alert alert-danger mb-2" role="alert">
                                 <span>{{ $message }}</span>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="float: right !important"></button>

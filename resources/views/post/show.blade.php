@@ -5,7 +5,7 @@
 
         <h1 class="text-2xl">Title Is: {{ $post->title }}</h1>
         <p>Body Is: {{ $post->body }}</p>
-        <p>Author Is:{{ $post->author }}</p>
+        <p>Author Is: {{ $post->user->name }}</p>
 
 
 
