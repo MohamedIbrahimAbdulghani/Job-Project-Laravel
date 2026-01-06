@@ -29,7 +29,20 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 // ## Protected Routes
 Route::middleware('auth')->group(function() {
     /************************************************    Routes For Blog  ********************************** */
-    Route::resource('/posts', PostController::class);
+    // Authorization Rules
+    // 1- Admin User (admin)
+    Route::middleware('role:admin')->group(function() {
+        Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
+        Route::post('posts/store', [PostController::class, 'store'])->name('posts.store');
+        Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
+        Route::PUT('posts/{id}', [PostController::class, 'update'])->name('posts.update');
+        Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+    });
+    // 2- Normal User (user, admin)
+    Route::middleware('role:user,admin')->group(function() {
+        Route::get('posts', [PostController::class, 'index'])->name('posts');
+        Route::get('posts/{id}/show', [PostController::class, 'show'])->name('posts.show');
+    });
 
     /************************************************    Routes For Comment  ********************************** */
     Route::resource('/comments', CommentController::class);

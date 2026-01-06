@@ -60,8 +60,9 @@ class PostController extends Controller
         $data = Post::find($id);
         if(!$data) {
             return response()->json(['data' => null, 'success' => false, 'Message' => 'Post Not Found'], 404);
+        } else {
+            $data->delete();
         }
-        $data->delete();
         return response()->json(['data' => null, 'success' => true, 'Message' => 'Post Deleted Successfully'], 204);
     }
 }
