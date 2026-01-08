@@ -38,7 +38,7 @@
             @if(Auth::user()->role === 'editor' || Auth::user()->role === 'admin')
                 <a class="btn btn-secondary" href="{{route('posts.edit', $post->id)}}">Edit</a>
             @endif
-            @if(Auth::user()->role === 'admin')
+            @if(Auth::user()->role === 'admin' || Auth::user()->id === $post->user_id)
                 <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">

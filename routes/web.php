@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function() {
     // Authorization Rules
     // 1- (admin)
     Route::middleware('role:admin')->group(function() {
-        Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+
     });
     // 2- (user, admin, editor)
     Route::middleware('role:admin,editor')->group(function() {
@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function() {
         Route::post('posts/store', [PostController::class, 'store'])->name('posts.store');
         Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
         Route::PUT('posts/{id}', [PostController::class, 'update'])->name('posts.update');
+        Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
     });
     // 3- (user, admin, editor)
     Route::middleware('role:user,admin,editor')->group(function() {

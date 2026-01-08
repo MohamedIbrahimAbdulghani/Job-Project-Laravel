@@ -57,7 +57,7 @@ class PostController extends Controller
         }
         // this is to use ( OBAC ) Ownership Based Access Control
         if($data->user_id !== Auth::id()) {
-            return response()->json(['data' => null, 'error' => "You can't edit about this post because you don't created by you!"]);
+            return response()->json(['data' => null, 'success' => false, 'Message' => "You can't edit about this post because you don't created by you!"], 404);
         }
         $data->update($request->all());
         return response()->json(['data' => $data, 'success' => true, 'Message' => 'Post Updated Successfully'], 200);
@@ -71,9 +71,11 @@ class PostController extends Controller
         $data = Post::find($id);
         if(!$data) {
             return response()->json(['data' => null, 'success' => false, 'Message' => 'Post Not Found'], 404);
+        } elseif($data->user_id !== Auth::id()) {
+            return response()->json(['data' => null, 'success' => false, 'Message' => "You can't edit about this post because you don't created by you!"], 404);
         } else {
             $data->delete();
         }
-        return response()->json(['data' => null, 'success' => true, 'Message' => 'Post Deleted Successfully'], 204);
+        return response()->json(['data' => null, 'success' => true, 'Message' => 'Post Deleted Successfully'], 200);
     }
 }

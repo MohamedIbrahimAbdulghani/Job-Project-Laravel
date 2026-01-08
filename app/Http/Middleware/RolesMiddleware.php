@@ -17,8 +17,8 @@ class RolesMiddleware
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         if(Auth::check()) {
-            $role = auth()->user()->role;
-            $hasAccess = in_array($role, $roles);
+            $role = auth()->user()->role; // TO GET TYPE OF ROLE FROM TABLE USERS IN DATABASE
+            $hasAccess = in_array($role, $roles); // TO CHECK IF ROLE IN DATABASE === ROLE IN PARAMETER ROUTE IN FILE WEB.PHP
             if(!$hasAccess) {
                 abort(403);
             }
