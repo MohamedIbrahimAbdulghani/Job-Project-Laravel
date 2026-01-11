@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\AddPostRequest;
 
 class PostController extends Controller
@@ -66,22 +67,25 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        $post = Post::findOrFail($id);
-        // this is to use ( OBAC ) Ownership Based Access Control
-        if($post->user_id !== Auth::id()) {
-            return redirect('posts')->with('error', "You can't edit about this post because you don't created by you!");
-        }
+        // $post = Post::findOrFail($id);
+        // this is to use ( OBAC ) Ownership Based Access Control by Policy
+
+        // Gate::authorize('update', $post);
+
+        // if($post->user_id !== Auth::id()) {
+        //     return redirect('posts')->with('error', "You can't edit about this post because you don't created by you!");
+        // }
         return view('post.edit', ['pageTitle'=>'Edit Post', 'post'=>$post]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(AddPostRequest $request, string $id)
+    public function update(AddPostRequest $request, Post $post)
     {
-        $post = Post::findOrFail($id);
+        // $post = Post::findOrFail($id);
         // $post->update([
         //     'title' => $request->title,
         //     'body' => $request->body,
@@ -89,6 +93,8 @@ class PostController extends Controller
         //     'published' => $request->has('published') ? 1 : 0 ,
         // ]);
         // return redirect('/posts');
+
+        // Gate::authorize('update', $post); //use policy to check update function
 
         $post->title = $request->input('title');
         $post->body = $request->input('body');

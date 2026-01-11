@@ -38,8 +38,8 @@ Route::middleware('auth')->group(function() {
     Route::middleware('role:admin,editor')->group(function() {
         Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
         Route::post('posts/store', [PostController::class, 'store'])->name('posts.store');
-        Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
-        Route::PUT('posts/{id}', [PostController::class, 'update'])->name('posts.update');
+        Route::get('posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit')->can('update', 'post');
+        Route::PUT('posts/{post}', [PostController::class, 'update'])->name('posts.update')->can('update', 'post');
         Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
     });
     // 3- (user, admin, editor)

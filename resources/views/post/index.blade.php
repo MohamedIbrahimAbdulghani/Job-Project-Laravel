@@ -9,11 +9,11 @@
     @endif
 
     @if(session('error'))
-    <div class="alert alert-danger mb-2" role="alert">
-        <span>{{ session('error') }}</span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="float: right !important"></button>
-    </div>
-@endif
+        <div class="alert alert-danger mb-2" role="alert">
+            <span>{{ session('error') }}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="float: right !important"></button>
+        </div>
+    @endif
 
     @if(session('delete'))
         <div class="alert alert-danger mb-2" role="alert">
