@@ -19,7 +19,7 @@ Route::prefix('v1')->name('api.')->group(function() {
     // 2- (admin, editor)
     Route::middleware('auth:api','role:admin,editor')->group(function() {
         Route::post('posts/store', [PostController::class, 'store'])->name('posts.store');
-        Route::PATCH('posts/{id}', [PostController::class, 'update'])->name('posts.update');
+        Route::PATCH('posts/{post}', [PostController::class, 'update'])->name('posts.update')->can('update', 'post');
         Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
     });
     // 3- (user, admin, editor)
@@ -48,6 +48,3 @@ Route::prefix('v1')->name('api.')->group(function() {
         });
     });
 });
-
-
-

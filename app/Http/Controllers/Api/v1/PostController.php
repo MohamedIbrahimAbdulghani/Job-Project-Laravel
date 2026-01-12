@@ -29,7 +29,7 @@ class PostController extends Controller
             'title'     => $request->title,
             'body'      => $request->body,
             'published' => $request->published ?? 0,
-            'user_id'   => auth()->id(),
+            'user_id'   => Auth::id()
         ]);
         return response()->json(['data' => $data, 'success' => true, 'Message' => 'Post Created Successfully'], 201);
     }
@@ -49,30 +49,23 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        $data = Post::find($id);
-        if(!$data) {
+        if(!$post) {
             return response()->json(['data' => null, 'success' => false, 'Message' => 'Post Not Found'], 404);
         }
-        // this is to use ( OBAC ) Ownership Based Access Control
-        if($data->user_id !== Auth::id()) {
-            return response()->json(['data' => null, 'success' => false, 'Message' => "You can't edit about this post because you don't created by you!"], 404);
-        }
-        $data->update($request->all());
-        return response()->json(['data' => $data, 'success' => true, 'Message' => 'Post Updated Successfully'], 200);
+        $post->update($request->all());
+        return response()->json(['data' => $post, 'success' => true, 'Message' => 'Post Updated Successfully'], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        $data = Post::find($id);
+        $data = $post;
         if(!$data) {
             return response()->json(['data' => null, 'success' => false, 'Message' => 'Post Not Found'], 404);
-        } elseif($data->user_id !== Auth::id()) {
-            return response()->json(['data' => null, 'success' => false, 'Message' => "You can't edit about this post because you don't created by you!"], 404);
         } else {
             $data->delete();
         }
